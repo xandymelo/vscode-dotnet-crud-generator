@@ -16,6 +16,10 @@
         "command": "extension.generateModels",
         "title": "Generate new Models",
         "category": "Other"
+      },
+      {
+        "command": "extension.configureTextModelsTemplates",
+        "title": "Configure Models Text Templates"
       }
     ],
     "menus": {
