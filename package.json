@@ -1,31 +1,70 @@
 {
-  "name": "dotnet-crud-generator",
+  "name": "vscode-dotnet-crud-generator",
   "displayName": ".Net CRUD Generator",
-  "description": "if laravel can, we can too",
+  "description": "generate controllers, models and services with the pattern of your choice, for .NET web API project",
+  "icon": "./img/icon.jpeg",
   "version": "0.0.1",
+  "publisher": "nome da conta do marketplace",
+  "author": {
+    "name": "Alexandre Melo",
+    "email": "xandymelo2@outlook.com.br"
+  },
   "engines": {
     "vscode": "^1.93.0"
   },
   "categories": [
     "Other"
   ],
+  "license": "MIT",
+  "homepage": "https://github.com/xandymelo/vscode-dotnet-crud-generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xandymelo/vscode-dotnet-crud-generator.git"
+  }, 
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "extension.generateModels",
-        "title": "Generate new Models",
-        "category": "Other"
+        "title": " Generate Models",
+        "category": "Generate"
       },
       {
         "command": "extension.configureTextModelsTemplates",
         "title": "Configure Models Text Templates"
+      },
+      {
+        "command": "extension.generateService",
+        "title": "Generate Service",
+        "category": "Generate"
+      },
+      {
+        "command": "extension.configureTextServiceTemplates",
+        "title": "Configure Service Text Templates"
+      },
+      {
+        "command": "extension.generateController",
+        "title": "Generate Controller",
+        "category": "Generate"
+      },
+      {
+        "command": "extension.configureTextControllerTemplates",
+        "title": "Configure Controller Text Templates"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "extension.generateModels",
+          "when": "explorerResourceIsFolder",
+          "group": "1_generate"
+        },
+        {
+          "command": "extension.generateService",
+          "when": "explorerResourceIsFolder",
+          "group": "1_generate"
+        },{
+          "command": "extension.generateController",
           "when": "explorerResourceIsFolder",
           "group": "1_generate"
         }
