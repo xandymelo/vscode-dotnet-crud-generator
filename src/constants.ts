@@ -1,6 +1,7 @@
 export enum workSpaceStateNames {
     generateService = 'generateService',
-    generateModels = 'generateModels'
+    generateModels = 'generateModels',
+    generateController = 'generateController'
 }
 
 export const defaultModelContent = `namespace YourNamespace
@@ -11,6 +12,12 @@ export const defaultModelContent = `namespace YourNamespace
         }`;
 
 export const defaultServiceContent = `namespace YourNamespace
+{
+    public class YourClass
+    {
+    }
+}`;
+export const defaultControllerContent = `namespace YourNamespace
 {
     public class YourClass
     {

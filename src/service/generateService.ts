@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { createFiles } from '../utils/createFile';
+import { createFiles } from '../utils/createLocalFile';
 import { defaultServiceContent, workSpaceStateNames } from '../constants';
 export function registerGenerateServiceCommand(context: vscode.ExtensionContext) {
     let generateServiceDisposable = vscode.commands.registerCommand('extension.generateService', async (uri: vscode.Uri) => {

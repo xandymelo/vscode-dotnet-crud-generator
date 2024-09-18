@@ -4,11 +4,8 @@ import * as fs from 'fs';
 
 export async function createFiles(filesToCreate: string[], currentPath: string, modelContent: string) {
     for (const fileName of filesToCreate) {
-        const className = fileName.replace('.cs', '');
-        const content = modelContent.replace(/YourClass/g, className);
-
-        const filePath = path.join(currentPath, fileName);
-
+        const content = modelContent.replace(/YourClass/g, fileName);
+        const filePath = path.join(currentPath, fileName + ".cs");
         try {
             await fs.promises.writeFile(filePath, content, { encoding: 'utf8' });
             vscode.window.showInformationMessage(`Arquivo ${fileName} criado com sucesso.`);

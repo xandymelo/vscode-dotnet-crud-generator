@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { createFiles } from '../utils/createFile';
+import { createFiles } from '../utils/createLocalFile';
 import { defaultModelContent, workSpaceStateNames } from '../constants';
 
 export function registerGenerateModelsCommand(context: vscode.ExtensionContext) {
