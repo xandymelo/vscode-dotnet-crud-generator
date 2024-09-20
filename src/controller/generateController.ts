@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { createFiles } from '../utils/createLocalFile';
-import { defaultModelContent, workSpaceStateNames } from '../constants';
+import { CreateFile, defaultModelContent, workSpaceStateNames } from '../constants';
 
 export function registerGenerateControllerCommand(context: vscode.ExtensionContext) {
     let generateDisposable = vscode.commands.registerCommand('extension.generateController', async (uri: vscode.Uri) => {
@@ -17,11 +17,14 @@ export function registerGenerateControllerCommand(context: vscode.ExtensionConte
         entityName = entityName[0].toUpperCase() + entityName.slice(1);
         const folderPath = uri.fsPath;
 
-        const filesToCreate = [
-            `${entityName}Controller`
+        const filesToCreate: CreateFile[] = [
+            {
+                name: entityName,
+                type: workSpaceStateNames.generateController
+            }
         ];
         await createFiles(filesToCreate, folderPath, modelContent);
-        vscode.window.showInformationMessage(`Controller para ${entityName} gerado!`);
+        vscode.window.showInformationMessage(`${entityName} Controller created in ${folderPath}`);
     });
 
     context.subscriptions.push(generateDisposable);

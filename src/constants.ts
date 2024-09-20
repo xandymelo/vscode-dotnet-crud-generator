@@ -4,6 +4,11 @@ export enum workSpaceStateNames {
     generateController = 'generateController'
 }
 
+export interface CreateFile {
+    name: string;
+    type: workSpaceStateNames
+}
+
 export const defaultModelContent = `using System.Collections.Generic;
         namespace YourNamespace
         {
@@ -12,6 +17,7 @@ export const defaultModelContent = `using System.Collections.Generic;
             }
         }`;
 
+
 export const defaultServiceContent = `using ComidaInvisivel.Plataforma.Services.Models;
 using ComidaInvisivel.Plataforma.Services.Repository;
 using System.Threading.Tasks;
@@ -19,7 +25,7 @@ using System.Text;
 
 namespace ComidaInvisivel.Plataforma.Services
 {
-    public class [YourClass]Service : BaseService<$EntityName>
+    public class [YourClass]Service : BaseService<[YourClass]>
     {
         public LogService LogService { get; }
 
@@ -28,23 +34,22 @@ namespace ComidaInvisivel.Plataforma.Services
             LogService = logService;
         }
 
-        public override Task<[YourClass]> UpdateAsync($EntityName entity)
+        public override Task<[YourClass]> UpdateAsync([YourClass] entity)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<[YourClass]> UpdateWithLogAsync($EntityName entity, int userId)
+        public async Task<[YourClass]> UpdateWithLogAsync([YourClass] entity, int userId)
         {
-            var sbObservacao = new StringBuilder();
+            var sbObservation = new StringBuilder();
             var [YourClassLower] = await GetByIdAsync(entity.Id);
             await LogService.AdminLogAsync(
                 userId: userId,
-                acao: LogService.ACAO_EDITAR_[YourClassUpper],
+                action: LogService.ACTION_EDIT_[YourClassUpper],
                 model: new {
                     
                 },
-                observacao: sbObservacao.ToString(),
-                tipoOperacional: TipoOperacional...,
+                observation: sbObservacao.ToString(),
                 perfilId: entity.Id
             );
             return entity;
@@ -97,7 +102,7 @@ namespace $namespace
                 User.GetUserId(),
                 LogService.ACTION_CREATE_[YourCLassUpper],
                 Mapper.Map<[YourClass]Model>(entity),
-                \`[YourClass] criado pelo usuário \${User.GetUserId()}\`,
+                \`[YourClass] created by userId \${User.GetUserId()}\`,
                 entity.Id
             );
             return Ok(Mapper.Map<[YourClass]Model>(entity));
@@ -111,9 +116,9 @@ namespace $namespace
             entities.forEach(entity => {
                 var task = LogService.AdminLogAsync(
                     User.GetUserId(),
-                    LogService.ACAO_CRIAR_[YourClassUpper],
+                    LogService.ACTION_CREATE_[YourClassUpper],
                     Mapper.Map<OngAvaliacaoModel>(entity),
-                    \`[YourClass] criada pelo usuário \`,
+                    \`[YourClass] create by user \${User.GetUserId()}\`,
                     entity.Id
                 );
                 tasks.push(task);
@@ -145,9 +150,9 @@ namespace $namespace
             await _[YourClass]Service.DeleteAsync(id);
             await LogService.AdminLogAsync(
                 User.GetUserId(),
-                LogService.ACAO_DELETAR_[YourClassUpper],
+                LogService.ACTION_DELETE_[YourClassUpper],
                 Mapper.Map<[YourClass]Model>(item),
-                \`[YourClass] deletado pelo usuário \`,
+                \`[YourClass] deleted by userId \${User.GetUserId()}\`,
                 id
             );
             return NoContent();
