@@ -19,27 +19,27 @@ using System.Text;
 
 namespace ComidaInvisivel.Plataforma.Services
 {
-    public class ${EntityName}Service : BaseService<$EntityName>
+    public class [YourClass]Service : BaseService<$EntityName>
     {
         public LogService LogService { get; }
 
-        public ${EntityName}Service(IRepository repository, LogService logService) : base(repository)
+        public [YourClass]Service(IRepository repository, LogService logService) : base(repository)
         {
             LogService = logService;
         }
 
-        public override Task<${EntityName}> UpdateAsync($EntityName entity)
+        public override Task<[YourClass]> UpdateAsync($EntityName entity)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<${EntityName}> UpdateWithLogAsync($EntityName entity, int userId)
+        public async Task<[YourClass]> UpdateWithLogAsync($EntityName entity, int userId)
         {
             var sbObservacao = new StringBuilder();
-            var ${EntityNameLower} = await GetByIdAsync(entity.Id);
+            var [YourClassLower] = await GetByIdAsync(entity.Id);
             await LogService.AdminLogAsync(
                 userId: userId,
-                acao: LogService.ACAO_EDITAR_${EntityNameUpper},
+                acao: LogService.ACAO_EDITAR_[YourClassUpper],
                 model: new {
                     
                 },
@@ -104,52 +104,50 @@ namespace $namespace
         }
 
         [HttpPost("range")]
-        public async Task<IActionResult> CreateRange(List<${EntityName}Model> itens)
+        public async Task<IActionResult> CreateRange(List<[YourClass]Model> itens)
         {
-            var entities = await _${EntityName}Service.AddRangeAsync(Mapper.Map<List<${EntityName}>>(itens));
+            var entities = await _[YourClass]Service.AddRangeAsync(Mapper.Map<List<[YourClass]>>(itens));
             var tasks = new List<Task>();
             entities.forEach(entity => {
                 var task = LogService.AdminLogAsync(
                     User.GetUserId(),
-                    LogService.ACAO_CRIAR_${EntityNameUpper},
+                    LogService.ACAO_CRIAR_[YourClassUpper],
                     Mapper.Map<OngAvaliacaoModel>(entity),
-                    `${EntityName} criada pelo usuário ${User.GetUserId()}`,
-                    TipoOperacional...,
+                    \`[YourClass] criada pelo usuário \`,
                     entity.Id
                 );
                 tasks.push(task);
             });
             await Promise.all(tasks);
-            return Ok(Mapper.Map<List<${EntityName}Model>>(entities));
+            return Ok(Mapper.Map<List<[YourClass]Model>>(entities));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Update${EntityName}Model model)
+        public async Task<IActionResult> Update(Update[YourClass]Model model)
         {
-            var existingItem = await _${entityName}Service.GetByIdAsync(model.Id);
+            var existingItem = await _[YourClass]Service.GetByIdAsync(model.Id);
             if (existingItem == null)
             {
                 return NotFound();
             }
-            await _${entityName}Service.UpdateWithLogAsync(Mapper.Map<${entityName}>(model), User.GetUserId());
+            await _[YourClass]Service.UpdateWithLogAsync(Mapper.Map<[YourClass]>(model), User.GetUserId());
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var item = await _${entityName}Service.GetByIdAsync(id);
+            var item = await _[YourClass]Service.GetByIdAsync(id);
             if (item == null)
             {
                 return NotFound();
             }
-            await _${entityName}Service.DeleteAsync(id);
+            await _[YourClass]Service.DeleteAsync(id);
             await LogService.AdminLogAsync(
                 User.GetUserId(),
-                LogService.ACAO_DELETAR_${EntityNameUpper},
-                Mapper.Map<${EntityName}Model>(item),
-                `${EntityName} deletado pelo usuário ${User.GetUserId()}`,
-                TipoOperacional...,
+                LogService.ACAO_DELETAR_[YourClassUpper],
+                Mapper.Map<[YourClass]Model>(item),
+                \`[YourClass] deletado pelo usuário \`,
                 id
             );
             return NoContent();
