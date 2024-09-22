@@ -1,4 +1,4 @@
-# dotnet-crud-generator README
+# dotnet-crud-generator
 
 
 ![](./src/img/icon.jpeg)
