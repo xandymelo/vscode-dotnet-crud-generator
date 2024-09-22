@@ -16,10 +16,4 @@ This extension contributes the following settings:
 * `myExtension.thing`: Set to `blah` to do something.
 
 
-## Releases
-
-### 1.0.0
-
-[]releases
-
 
