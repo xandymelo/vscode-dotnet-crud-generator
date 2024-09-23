@@ -1,4 +1,4 @@
-export enum workSpaceStateNames {
+export enum globalFileNames {
     generateService = 'generateService',
     generateModels = 'generateModels',
     generateController = 'generateController'
@@ -6,7 +6,7 @@ export enum workSpaceStateNames {
 
 export interface CreateFile {
     name: string;
-    type: workSpaceStateNames
+    type: globalFileNames
 }
 
 export const defaultModelContent = `using System.Collections.Generic;

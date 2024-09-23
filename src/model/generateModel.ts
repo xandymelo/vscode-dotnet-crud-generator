@@ -2,12 +2,12 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { createFiles } from '../utils/createLocalFile';
-import { CreateFile, defaultModelContent, workSpaceStateNames } from '../constants';
+import { CreateFile, defaultModelContent, defaultServiceContent, globalFileNames } from '../constants';
+import { getContent } from '../utils/getContent';
 
 export function registerGenerateModelsCommand(context: vscode.ExtensionContext) {
     let generateModelDisposable = vscode.commands.registerCommand('extension.generateModels', async (uri: vscode.Uri) => {
-        const savedModelContent = context.workspaceState.get<string>(workSpaceStateNames.generateModels);
-        const modelContent = savedModelContent || defaultModelContent;
+        let content = getContent(globalFileNames.generateModels, defaultModelContent);
         var entityName = await vscode.window.showInputBox({
             prompt: 'Enter the name of the entity to generate the models',
             placeHolder: 'Example: Product'
@@ -28,18 +28,18 @@ export function registerGenerateModelsCommand(context: vscode.ExtensionContext) 
         const filesToCreate: CreateFile[] = [
             {
                 name: `Create${entityName}`,
-                type: workSpaceStateNames.generateModels,
+                type: globalFileNames.generateModels,
             },
             {
                 name:`Update${entityName}`,
-                type: workSpaceStateNames.generateModels
+                type: globalFileNames.generateModels
             },
             {
                 name: entityName,
-                type: workSpaceStateNames.generateModels
+                type: globalFileNames.generateModels
             }
         ];
-        await createFiles(filesToCreate, entityFolderPath, modelContent);
+        await createFiles(filesToCreate, entityFolderPath, content);
         
 
         vscode.window.showInformationMessage(`${entityName} Models created in ${entityFolderPath}`);
