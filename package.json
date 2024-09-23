@@ -2,9 +2,9 @@
   "name": "vscode-dotnet-crud-generator",
   "displayName": ".Net CRUD Generator",
   "description": "generate controllers, models and services with the pattern of your choice, for .NET web API project",
-  "icon": "./img/icon.jpeg",
+  "icon": "icon.png",
   "version": "0.0.1",
-  "publisher": "nome da conta do marketplace",
+  "publisher": "AlexandreMelo",
   "author": {
     "name": "Alexandre Melo",
     "email": "xandymelo2@outlook.com.br"
