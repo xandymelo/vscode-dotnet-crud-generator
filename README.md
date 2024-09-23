@@ -8,7 +8,7 @@ automate the creation of a CRUD following the standards of your .NET project.
 
 # TODO
 
-- [ ] Being able to modify the default texts in the extension's settings tab.
+- [ ] Being able to choose which models will be created in the settings tab.
 
 - [ ] Publish the extension
 
