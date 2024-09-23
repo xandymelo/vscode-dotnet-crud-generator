@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { createFiles } from '../utils/createLocalFile';
-import { defaultModelContent, workSpaceStateNames } from '../constants';
+import { CreateFile, defaultModelContent, workSpaceStateNames } from '../constants';
 
 export function registerGenerateModelsCommand(context: vscode.ExtensionContext) {
     let generateModelDisposable = vscode.commands.registerCommand('extension.generateModels', async (uri: vscode.Uri) => {
@@ -25,15 +25,24 @@ export function registerGenerateModelsCommand(context: vscode.ExtensionContext) 
             vscode.window.showInformationMessage(`Pasta ${entityFolderPath} criada.`);
         }
 
-        const filesToCreate = [
-            `Create${entityName}Model`,
-            `Update${entityName}Model`,
-            `${entityName}Model`,
+        const filesToCreate: CreateFile[] = [
+            {
+                name: `Create${entityName}`,
+                type: workSpaceStateNames.generateModels,
+            },
+            {
+                name:`Update${entityName}`,
+                type: workSpaceStateNames.generateModels
+            },
+            {
+                name: entityName,
+                type: workSpaceStateNames.generateModels
+            }
         ];
         await createFiles(filesToCreate, entityFolderPath, modelContent);
         
 
-        vscode.window.showInformationMessage(`Models para ${entityName} gerado na pasta ${entityFolderPath}`);
+        vscode.window.showInformationMessage(`${entityName} Models created in ${entityFolderPath}`);
     });
 
     context.subscriptions.push(generateModelDisposable);

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { createFiles } from '../utils/createLocalFile';
-import { defaultServiceContent, workSpaceStateNames } from '../constants';
+import { CreateFile, defaultServiceContent, workSpaceStateNames } from '../constants';
 export function registerGenerateServiceCommand(context: vscode.ExtensionContext) {
     let generateServiceDisposable = vscode.commands.registerCommand('extension.generateService', async (uri: vscode.Uri) => {
         const savedModelContent = context.workspaceState.get<string>(workSpaceStateNames.generateService);
@@ -16,11 +16,14 @@ export function registerGenerateServiceCommand(context: vscode.ExtensionContext)
         }
         entityName = entityName[0].toUpperCase() + entityName.slice(1);
         const path = uri.fsPath;
-        const filesToCreate = [
-            `${entityName}Service`,
+        const filesToCreate : CreateFile[] = [
+            {
+                name: `${entityName}`,
+                type: workSpaceStateNames.generateService
+            }
         ];
         await createFiles(filesToCreate, path, modelContent);
-        vscode.window.showInformationMessage(`Service para ${entityName} gerado na pasta ${path}`);
+        vscode.window.showInformationMessage(`${entityName} Service create in ${path}`);
     });
     context.subscriptions.push(generateServiceDisposable);
 }
