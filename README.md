@@ -1,8 +1,10 @@
 # .NET CRUD Generator
+### Automate the creation of a CRUD following the standards of your .NET project.
+![](./src/img/createService.gif)
 
-automate the creation of a CRUD following the standards of your .NET project.
-
-[GIF]
+# Templates
+### Configure templates with whatever initial code you want.
+![](./src/img/configureService.gif)
 
 # TODO
 
