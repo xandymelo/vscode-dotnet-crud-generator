@@ -23,6 +23,29 @@
   }, 
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "dotnet-crud-generator",
+      "properties": {
+        "dotnet-crud-generator.templates": {
+          "type": "object",
+          "description": "Configure the templates for the models, services and controllers",
+          "default": {
+            "models": {
+              "text": "using System;\n\nnamespace $namespace$\n{\n    public class $className$\n    {\n        $properties$\n    }\n}",
+              "properties": {
+                "text": "public $type$ $name$ { get; set; }"
+              }
+            },
+            "services": {
+              "text": "using System;\n\nnamespace $namespace$\n{\n    public class $className$Service\n    {\n        private readonly $className$Repository _repository;\n\n        public $className$Service($className$Repository repository)\n        {\n            _repository = repository;\n        }\n    }\n}"
+            },
+            "controllers": {
+              "text": "using System;\nusing System.Collections.Generic;\nusing System.Threading.Tasks;\nusing Microsoft.AspNetCore.Mvc;\n\nnamespace $namespace$\n{\n    [Route(\"api/[controller]\")]\n    [ApiController]\n    public class $className$Controller : ControllerBase\n    {\n        private readonly $className$Service _service;\n\n        public $className$Controller($className$Service service)\n        {\n            _service = service;\n        }\n    }\n}"
+            }
+          }
+        }
+      }
+    },
     "commands": [
       {
         "command": "extension.generateModels",
