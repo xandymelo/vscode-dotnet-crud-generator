@@ -13,7 +13,8 @@
     "vscode": "^1.93.0"
   },
   "categories": [
-    "Other"
+    "Formatters",
+    "Programming Languages"
   ],
   "license": "MIT",
   "homepage": "https://github.com/xandymelo/vscode-dotnet-crud-generator",
