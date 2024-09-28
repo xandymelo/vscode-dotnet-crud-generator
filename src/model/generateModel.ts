@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { createFiles } from '../utils/createLocalFile';
-import { CreateFile, defaultModelContent, defaultServiceContent, globalFileNames } from '../constants';
+import { CreateFile, defaultModelContent, globalFileNames } from '../constants';
 import { getContent } from '../utils/getContent';
 
 export function registerGenerateModelsCommand(context: vscode.ExtensionContext) {
