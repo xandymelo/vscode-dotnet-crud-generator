@@ -10,6 +10,6 @@
 
 - [x] Publish the extension
 - [ ] Being able to choose which models will be created in the settings tab.
-- [ ] create unit tests
+- [x] create unit tests
 - [ ] create a way to reset the default files, perhaps using the settings UI.
 
