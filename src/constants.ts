@@ -49,7 +49,7 @@ namespace ComidaInvisivel.Plataforma.Services
                 model: new {
                     
                 },
-                observation: sbObservacao.ToString(),
+                observation: sbObservation.ToString(),
                 perfilId: entity.Id
             );
             return entity;
