@@ -51,6 +51,10 @@
       {
         "command": "extension.configureTextControllerTemplates",
         "title": "Configure Controller Text Templates"
+      },
+      {
+        "command": "extension.resetDefaultSettings",
+        "title": "CRUD Generator Settings: reset Default Settings"
       }
     ],
     "menus": {
