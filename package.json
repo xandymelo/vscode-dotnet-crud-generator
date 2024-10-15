@@ -3,7 +3,7 @@
   "displayName": ".Net CRUD Generator",
   "description": "generate controllers, models and services with the pattern of your choice, for .NET web API project",
   "icon": "icon.png",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "AlexandreMelo",
   "author": {
     "name": "Alexandre Melo",
@@ -51,6 +51,10 @@
       {
         "command": "extension.configureTextControllerTemplates",
         "title": "Configure Controller Text Templates"
+      },
+      {
+        "command": "extension.resetDefaultSettings",
+        "title": "CRUD Generator Settings: reset Default Settings"
       }
     ],
     "menus": {

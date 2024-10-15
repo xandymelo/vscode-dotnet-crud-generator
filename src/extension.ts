@@ -1,10 +1,11 @@
 import * as vscode from 'vscode';
-import { registerGenerateModelsCommand } from './model/generateModel';
-import { registerConfigureTextModelsTemplatesCommand } from './model/configureTextModelsTemplate';
-import { registerGenerateServiceCommand } from './service/generateService';
-import { registerConfigureTextServiceTemplatesCommand } from './service/configureTextServiceTemplate';
-import { registerGenerateControllerCommand } from './controller/generateController';
 import { registerConfigureTextControllerTemplatesCommand } from './controller/configureTextControllerTemplate';
+import { registerGenerateControllerCommand } from './controller/generateController';
+import { registerConfigureTextModelsTemplatesCommand } from './model/configureTextModelsTemplate';
+import { registerGenerateModelsCommand } from './model/generateModel';
+import { registerResetDefaultSettings } from './resetDefaultSettings';
+import { registerConfigureTextServiceTemplatesCommand } from './service/configureTextServiceTemplate';
+import { registerGenerateServiceCommand } from './service/generateService';
 export function activate(context: vscode.ExtensionContext) {
     
     registerGenerateModelsCommand(context);
@@ -15,6 +16,8 @@ export function activate(context: vscode.ExtensionContext) {
     
     registerGenerateControllerCommand(context);
     registerConfigureTextControllerTemplatesCommand(context);
+
+    registerResetDefaultSettings(context);
 }
 
 export function deactivate() {}
